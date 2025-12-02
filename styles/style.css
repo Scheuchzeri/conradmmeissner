@@ -1,0 +1,9 @@
+/* Root Styles */
+
+:root {
+  --color-primary: skyblue;
+}
+
+h1 {
+  color: var(--color-primary);
+}
