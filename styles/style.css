@@ -2,8 +2,104 @@
 
 :root {
   --color-primary: #333333;
+  --color-header: #533939;
+  --color-highlight: #395353;
+
+  --font-standard: "Helvetica", "Arial", sans-serif;
 }
 
-h1 {
-  color: var(--color-primary);
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  /* Element-Level Styling */
+
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--color-header);
+    font-style: var(--font-standard);
+  }
+
+  header {
+    display: none;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em;
+    border: 1px solid black;
+  }
+
+  section {
+    display: none;
+  }
+
+  footer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Body-Level Styling */
+
+  .opening-banner {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: block;
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    width: 3em;
+    height: 3em;
+    background-color: var(--color-highlight);
+    border-radius: 4px;
+    transition: 0.3s ease;
+    cursor: pointer;
+  }
+
+  .mobile-menu-button:hover {
+    background-color: var(--color-header);
+  }
+
+  /* Header Styling */
+
+  /* Main Level Styling */
+
+  .hero-section.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 1rem;
+  }
+
+  .profile-picture {
+    object-fit: scale-down;
+    max-width: 100%;
+  }
+
+  .projects-section.active {
+    display: flex;
+    flex-direction: column;
+  }
 }
