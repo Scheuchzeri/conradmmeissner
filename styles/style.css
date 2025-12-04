@@ -3,7 +3,8 @@
 :root {
   --color-primary: #333333;
   --color-header: #533939;
-  --color-highlight: #395353;
+  --color-highlight: #6bf7f7;
+  --color-secondary: rgb(167, 160, 160);
 
   --font-standard: "Helvetica", "Arial", sans-serif;
 }
@@ -66,20 +67,49 @@
   }
 
   .mobile-menu-button {
-    display: block;
+    display: flex;
+    flex-direction: column;
     position: fixed;
+    justify-content: space-evenly;
+    align-items: center;
     top: 32px;
     right: 32px;
     width: 3em;
     height: 3em;
-    background-color: var(--color-highlight);
+    background-color: var(--color-primary);
     border-radius: 4px;
     transition: 0.3s ease;
     cursor: pointer;
   }
 
   .mobile-menu-button:hover {
-    background-color: var(--color-header);
+    background-color: var(--color-secondary);
+  }
+
+  .mobile-menu-div {
+    width: 32px;
+    height: 4px;
+    background-color: var(--color-secondary);
+    border-radius: 4px;
+    transition: 0.3s ease;
+  }
+
+  .mobile-menu-button:hover .mobile-menu-div {
+    background-color: var(--color-highlight);
+  }
+
+  .mobile-menu-button:hover div:nth-child(1) {
+    transform: translateY(26px);
+  }
+
+  .mobile-menu-button:hover div:nth-child(2) {
+    transform: translateX(8px) rotate(-32deg);
+    transform-origin: left;
+  }
+
+  .mobile-menu-button:hover div:nth-child(3) {
+    transform: translate(8px, -16px) rotate(32deg);
+    transform-origin: left;
   }
 
   /* Header Styling */
