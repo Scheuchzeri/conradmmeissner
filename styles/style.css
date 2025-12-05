@@ -3,7 +3,7 @@
 :root {
   --color-primary: #333333;
   --color-header: #533939;
-  --color-highlight: #6bf7f7;
+  --color-highlight: #964b57;
   --color-secondary: rgb(167, 160, 160);
 
   --font-standard: "Helvetica", "Arial", sans-serif;
@@ -36,8 +36,15 @@
     font-style: var(--font-standard);
   }
 
+  h1 {
+    font-size: 1.5em;
+  }
+
   header {
-    display: none;
+    opacity: 0;
+    transition: 0.3s ease;
+    transform: translateY(-100vh);
+    padding: 1em;
   }
 
   main {
@@ -74,12 +81,13 @@
     align-items: center;
     top: 32px;
     right: 32px;
-    width: 3em;
-    height: 3em;
+    width: 48px;
+    height: 48px;
     background-color: var(--color-primary);
     border-radius: 4px;
     transition: 0.3s ease;
     cursor: pointer;
+    z-index: 1000;
   }
 
   .mobile-menu-button:hover {
@@ -87,7 +95,7 @@
   }
 
   .mobile-menu-div {
-    width: 32px;
+    width: 42px;
     height: 4px;
     background-color: var(--color-secondary);
     border-radius: 4px;
@@ -98,21 +106,66 @@
     background-color: var(--color-highlight);
   }
 
-  .mobile-menu-button:hover div:nth-child(1) {
-    transform: translateY(26px);
+  .mobile-menu-button.active div:nth-child(1) {
+    transform: translate(-6px, -2px) rotate(-45deg);
+    transform-origin: right;
   }
 
-  .mobile-menu-button:hover div:nth-child(2) {
-    transform: translateX(8px) rotate(-32deg);
-    transform-origin: left;
+  .mobile-menu-button.active div:nth-child(2) {
+    opacity: 0;
   }
 
-  .mobile-menu-button:hover div:nth-child(3) {
-    transform: translate(8px, -16px) rotate(32deg);
-    transform-origin: left;
+  .mobile-menu-button.active div:nth-child(3) {
+    transform: translate(-6px, 2px) rotate(45deg);
+    transform-origin: right;
   }
 
   /* Header Styling */
+
+  header.active {
+    opacity: 1;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-secondary);
+    transition: 1s ease;
+    transform: translateY(0);
+  }
+
+  header.active > h1 {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    flex-grow: 1;
+  }
+
+  header.active > navbar {
+    align-self: flex-start;
+    margin-top: 3em;
+    display: flex;
+    justify-content: center;
+    flex-grow: 2;
+    padding: 0;
+  }
+
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    flex-basis: 1;
+    margin: 0;
+    row-gap: 1.5em;
+  }
+
+  .menu-list > li:hover {
+    cursor: pointer;
+    color: var(--color-header);
+    transition: 0.3s ease;
+    font-style: var(--font-standard);
+    font-weight: bold;
+  }
 
   /* Main Level Styling */
 
@@ -131,5 +184,9 @@
   .projects-section.active {
     display: flex;
     flex-direction: column;
+  }
+
+  .contact.section.active {
+    display: flex;
   }
 }

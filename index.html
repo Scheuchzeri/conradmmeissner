@@ -24,17 +24,21 @@
       <div class="mobile-menu-div"></div>
     </div>
     <header>
-      <h1>Conrad M. Meissner</h1>
+      <h1>Conrad M Meissner</h1>
       <navbar>
-        <ul>
-          <li>Main</li>
-          <li>Projects</li>
-          <li>Contact</li>
+        <ul class="menu-list">
+          <li><a class="menu-link" data-tab="hero-section-id">Main</a></li>
+          <li>
+            <a class="menu-link" data-tab="projects-section-id">Projects</a>
+          </li>
+          <li>
+            <a class="menu-link" data-tab="contact-section-id">Contact</a>
+          </li>
         </ul>
       </navbar>
     </header>
     <main>
-      <section class="hero-section active">
+      <section class="hero-section active" id="hero-section-id">
         <h2>ConradM.</h2>
         <p>
           Conrad M. Meissner is a poet. There you have it. So beware and heed
@@ -48,7 +52,7 @@
           src="material/imgs/cm-portrait-main.png"
         />
       </section>
-      <section class="projects-section">
+      <section class="projects-section" id="projects-section-id">
         <h2>Projects</h2>
         <ul>
           <li>
@@ -68,7 +72,7 @@
           </li>
         </ul>
       </section>
-      <section class="contact-section">
+      <section class="contact-section" id="contact-section-id">
         <h2>Contact</h2>
         <p>Contact me over collective@yenno.eu</p>
       </section>
