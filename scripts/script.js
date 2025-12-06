@@ -48,16 +48,23 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   function hideOpeningBanner() {
+    const vw = window.innerWidth;
     openingBanner.classList.add("hidden");
     heroSection.classList.add("active");
     footer.classList.remove("hidden");
     mobileMenuBtn.classList.remove("hidden");
-    header.classList.add("active");
     navigation();
+    vw <= 768 ? header.classList.add("hidden") :
+    header.classList.remove("hidden");
   }
 
   openingBanner.addEventListener("click", hideOpeningBanner);
 
+  header.addEventListener("resize", () => {
+    const vw = window.innerWidth;
+
+    vw >= 768 ? header.classList.remove("hidden") : header ; 
+  })
 
 })
 
