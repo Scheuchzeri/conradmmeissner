@@ -5,9 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const heroSection = document.querySelector(".hero-section");
   const footer = document.querySelector("footer");
   const mobileMenuBtn = document.querySelector(".mobile-menu-button");
+  const header = document.querySelector("header");
 
   function navigation() {
-    const header = document.querySelector("header");
+
     const sections = document.querySelectorAll("section");
 
     const switchTabs = (dataVal) => {
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     heroSection.classList.add("active");
     footer.classList.remove("hidden");
     mobileMenuBtn.classList.remove("hidden");
-
+    header.classList.add("active");
     navigation();
   }
 
