@@ -1,21 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Script recognized.");
-  openingBanner();
   navigation();
 });
 
-function openingBanner() {
-  const openingBanner = document.querySelector(".opening-banner");
-  const heroSection = document.querySelector(".hero-section");
-  const mobileMenuButton = document.querySelector(".mobile-menu-button");
-
-  openingBanner.addEventListener("click", () => {
-    openingBanner.classList.remove("active");
-    mobileMenuButton.classList.add("started");
-    heroSection.classList.add("active");
-
-  })
-}
 
 function navigation() {
   const header = document.querySelector("header");
