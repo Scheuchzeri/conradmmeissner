@@ -1,43 +1,59 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Script recognized.");
-
+  openingBanner();
   navigation();
 });
 
-function navigation() {
-  const mobileMenuButton = document.querySelector(".mobile-menu-button");
+function openingBanner() {
+  const openingBanner = document.querySelector(".opening-banner");
   const heroSection = document.querySelector(".hero-section");
-  const projectsSection = document.querySelector(".projects-section");
-  const header = document.querySelector("header");
-  const menuLinks = document.querySelector(".menu-link");
-  const sections = document.querySelectorAll("section");
+  const mobileMenuButton = document.querySelector(".mobile-menu-button");
 
+  openingBanner.addEventListener("click", () => {
+    openingBanner.classList.remove("active");
+    mobileMenuButton.classList.add("started");
+    heroSection.classList.add("active");
+
+  })
+}
+
+function navigation() {
+  const header = document.querySelector("header");
+  const mobileMenuBtn = document.querySelector(".mobile-menu-button");
+  const sections = document.querySelectorAll("section");
   const switchTabs = (dataVal) => {
-    console.log(dataVal);
-    sections.forEach((section) => {
-      console.log(section.id);
-      section.id === dataVal
-        ? section.classList.add("active")
-        : section.classList.remove("active");
-    });
+    sections.forEach(sec => sec.id === dataVal ? sec.classList.add("active") : sec.classList.remove("active"))
   };
 
-  document.addEventListener("click", (e) => {
-    e.preventDefault();
+  let activeTabId = null;
 
-    if (e.target === header) {
-      console.log("This event was triggered.");
+  document.addEventListener("click", (e) => {
+    const target = e.target.closest(".menu-link, .mobile-menu-button, header");
+    if (!target) return;
+
+    const currentTab = document.querySelector("section.active");
+    activeTabId = currentTab.id;
+
+    if (target.matches(".menu-link")) {
+      mobileMenuBtn.classList.remove("active");
       header.classList.remove("active");
-    } else if (e.target === mobileMenuButton) {
-      mobileMenuButton.classList.contains("active")
-        ? mobileMenuButton.classList.remove("active")
-        : mobileMenuButton.classList.add("active");
-      header.classList.toggle("active");
-    } else if (e.target.classList.contains("menu-link")) {
-      const dataValue = e.target.dataset.tab;
-      mobileMenuButton.classList.remove("active");
+      switchTabs(target.dataset.tab);
+      return;
+    } else if (target.matches(".mobile-menu-button")) {
+      if (mobileMenuBtn.classList.contains("active")) {
+        mobileMenuBtn.classList.remove("active");
+        header.classList.remove("active");
+        switchTabs(activeTabId);
+      } else {
+        mobileMenuBtn.classList.add("active");
+        header.classList.add("active");
+      }
+      return;
+    } else if (target.matches("header")) {
+      mobileMenuBtn.classList.remove("active");
       header.classList.remove("active");
-      switchTabs(dataValue);
-    }
-  });
+      switchTabs(activeTabId);
+    } return;
+  })
 }
+  
