@@ -1,46 +1,66 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Script recognized.");
-  navigation();
-});
 
-
-function navigation() {
-  const header = document.querySelector("header");
+  const openingBanner = document.querySelector(".opening-banner");
+  const heroSection = document.querySelector(".hero-section");
+  const footer = document.querySelector("footer");
   const mobileMenuBtn = document.querySelector(".mobile-menu-button");
-  const sections = document.querySelectorAll("section");
-  const switchTabs = (dataVal) => {
-    sections.forEach(sec => sec.id === dataVal ? sec.classList.add("active") : sec.classList.remove("active"))
-  };
 
-  let activeTabId = null;
+  function navigation() {
+    const header = document.querySelector("header");
+    const sections = document.querySelectorAll("section");
 
-  document.addEventListener("click", (e) => {
-    const target = e.target.closest(".menu-link, .mobile-menu-button, header");
-    if (!target) return;
+    const switchTabs = (dataVal) => {
+      sections.forEach(sec => sec.id === dataVal ? sec.classList.add("active") : sec.classList.remove("active"))
+    };
 
-    const currentTab = document.querySelector("section.active");
-    activeTabId = currentTab.id;
+    let activeTabId = null;
 
-    if (target.matches(".menu-link")) {
-      mobileMenuBtn.classList.remove("active");
-      header.classList.remove("active");
-      switchTabs(target.dataset.tab);
-      return;
-    } else if (target.matches(".mobile-menu-button")) {
-      if (mobileMenuBtn.classList.contains("active")) {
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest(".menu-link, .mobile-menu-button, header");
+      if (!target) return;
+
+      const currentTab = document.querySelector("section.active");
+      activeTabId = currentTab.id;
+
+      if (target.matches(".menu-link")) {
+        mobileMenuBtn.classList.remove("active");
+        header.classList.remove("active");
+        switchTabs(target.dataset.tab);
+        return;
+      } else if (target.matches(".mobile-menu-button")) {
+        if (mobileMenuBtn.classList.contains("active")) {
+          mobileMenuBtn.classList.remove("active");
+          header.classList.remove("active");
+          switchTabs(activeTabId);
+        } else {
+          mobileMenuBtn.classList.add("active");
+          header.classList.add("active");
+        }
+        return;
+      } else if (target.matches("header")) {
         mobileMenuBtn.classList.remove("active");
         header.classList.remove("active");
         switchTabs(activeTabId);
-      } else {
-        mobileMenuBtn.classList.add("active");
-        header.classList.add("active");
-      }
-      return;
-    } else if (target.matches("header")) {
-      mobileMenuBtn.classList.remove("active");
-      header.classList.remove("active");
-      switchTabs(activeTabId);
-    } return;
-  })
-}
+      } return;
+    })
+  };
+
+  function hideOpeningBanner() {
+    openingBanner.classList.add("hidden");
+    heroSection.classList.add("active");
+    footer.classList.remove("hidden");
+    mobileMenuBtn.classList.remove("hidden");
+
+    navigation();
+  }
+
+  openingBanner.addEventListener("click", hideOpeningBanner);
+
+
+})
+
+
+
+
   
